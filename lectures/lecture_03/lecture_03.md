@@ -5,15 +5,16 @@
 Рассказать про [cppreference.com](cppreference.com), откуда можно взять информацию про что угодно, связанное с плюсами.
 
 ## Контейнеры
-Для каждого контейнера базовые возможности, базовое устройство, асимптотика вставок/удалений/других основных функций, итераторы
-- vector
-- map
-- set
-- list
-- unordered_map/unordered_set
-- deque
-- bitset
-- priority_queue
+Для каждого контейнера базовое устройство, основные методы (вставки (в середину, в конец, в начало), удаления, очистка, поиск элемента), асимптотика основных методов, про итераторы
+- [vector](https://en.cppreference.com/w/cpp/container/vector) (также вспомнить про capacity vs size, реаллокация, про [vector<bool>](https://en.cppreference.com/w/cpp/container/vector_bool))
+- [map](https://en.cppreference.com/w/cpp/container/map)
+- [set](https://en.cppreference.com/w/cpp/container/set)
+- [list](https://en.cppreference.com/w/cpp/container/list)
+- [unordered_map](https://en.cppreference.com/w/cpp/container/unordered_map)/[unordered_set](https://en.cppreference.com/w/cpp/container/unordered_set)
+- [deque](https://en.cppreference.com/w/cpp/container/deque)
+- [bitset](https://en.cppreference.com/w/cpp/utility/bitset)
+- [queue](https://en.cppreference.com/w/cpp/container/queue)
+- [priority_queue](https://en.cppreference.com/w/cpp/container/priority_queue)
 - [gp_hashtable, cc_hashtable](https://codeforces.com/blog/entry/60737) (по желанию, если время останется, в основном полезно в задачах, где нужно упихать что-то)
 
 ## Функции
