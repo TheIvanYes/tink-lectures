@@ -147,7 +147,7 @@ std::pair<int, int> find_k_th_zero(int v, int tl, int tr, int l, int k) {
 ```cpp
 const int N = 1e5;  // limit for array size
 int a[N];
-vector<int> t[4 * N];
+std::vector<int> t[4 * N];
 void build(int v, int tl, int tr) {
     if (tr - tl == 1) t[v] = {a[tl]};
     else {
@@ -156,14 +156,14 @@ void build(int v, int tl, int tr) {
         build(v * 2 + 1, tm, tr);
 
         t[v].resize(tr - tl);
-        merge(t[v * 2].begin(), t[v * 2].end(), t[v * 2 + 1].begin(), t[v * 2 + 1].end(), t[v].begin());
+        std::merge(t[v * 2].begin(), t[v * 2].end(), t[v * 2 + 1].begin(), t[v * 2 + 1].end(), t[v].begin());
     }
 }
 
 int get(int v, int tl, int tr, int l, int r, int a, int b) {
     if (r <= tl || tr <= l) return 0;
     if (l <= tl && tr <= r) {
-        return upper_bound(t[v].begin(), t[v].end(), b) - lower_bound(t[v].begin(), t[v].end(), a);
+        return std::upper_bound(t[v].begin(), t[v].end(), b) - std::lower_bound(t[v].begin(), t[v].end(), a);
     }
     int tm = (tl + tr) / 2;
     return get(v * 2, tl, tm, l, r) + get(v * 2 + 1, tm, tr, l, r);
