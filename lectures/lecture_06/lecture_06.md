@@ -109,15 +109,6 @@ int query(int l, int r) {  // sum on interval [l, r)
   }
   return res;
 }
-
-int main() {
-  scanf("%d", &n);
-  for (int i = 0; i < n; ++i) scanf("%d", t + n + i);
-  build();
-  modify(0, 1);
-  printf("%d\n", query(3, 11));
-  return 0;
-}
 ```
 
 # Спуск по дереву
@@ -150,5 +141,34 @@ std::pair<int, int> find_k_th_zero(int v, int tl, int tr, int l, int k) {
     return res2;
 }
 ```
+
+# MST
+Мерж сорт три - позволяет решать задачи вида (найдите количество чисел от a до b на отрезке [l, r]) без апдейтов
+```cpp
+const int N = 1e5;  // limit for array size
+int a[N];
+vector<int> t[4 * N];
+void build(int v, int tl, int tr) {
+    if (tr - tl == 1) t[v] = {a[tl]};
+    else {
+        int tm = (tl + tr) / 2;
+        build(v * 2, tl, tm);
+        build(v * 2 + 1, tm, tr);
+
+        t[v].resize(tr - tl);
+        merge(t[v * 2].begin(), t[v * 2].end(), t[v * 2 + 1].begin(), t[v * 2 + 1].end(), t[v].begin());
+    }
+}
+
+int get(int v, int tl, int tr, int l, int r, int a, int b) {
+    if (r <= tl || tr <= l) return 0;
+    if (l <= tl && tr <= r) {
+        return upper_bound(t[v].begin(), t[v].end(), b) - lower_bound(t[v].begin(), t[v].end(), a);
+    }
+    int tm = (tl + tr) / 2;
+    return get(v * 2, tl, tm, l, r) + get(v * 2 + 1, tm, tr, l, r);
+}
+```
+
 
 
