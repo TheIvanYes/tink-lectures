@@ -701,8 +701,6 @@ var useOldContestMark = function (total_scores, user_id, olymp) {
 
     let problem_max_score = new Array(total_scores[user_id].length).fill(0.0);
     let problem_accepted = new Array(problem_score.length).fill(0);
-    let max_score = 0;
-
     let pr_max = 0;
 
     if (!olymp) {
@@ -731,7 +729,18 @@ var useOldContestMark = function (total_scores, user_id, olymp) {
             pr_max += problem_max_score[j];
         }
     } else {
-        pr_max = 100 * problem_score.length;
+        for (let i = 0; i < total_scores.length; i++) {
+            for (let j = 0; j < problem_score.length; j++) {
+                problem_score[j] = Math.max(problem_score[j], total_scores[i][j]['score']);
+            }
+        }
+
+        for (let j = 0; j < problem_score.length; j++) {
+            if (problem_score[j] > 0) {
+                pr_max += problem_score[j];
+            }
+        }
+
         for (let j = 0; j < total_scores[user_id].length; j++) {
             total_score += total_scores[user_id][j]['score'];
         }
